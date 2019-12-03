@@ -704,6 +704,8 @@
         </e>
         <e p="SetColors.cs" t="Include" />
         <e p="SetMuscleLogo.cs" t="Include" />
+        <e p="SineWaveForSignals.cs" t="Include" />
+        <e p="SpinAround.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />

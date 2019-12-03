@@ -50,30 +50,9 @@ MonoBehaviour:
     type: 3}
   points: []
   xAxisPoints: []
-  ac:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  xyCurve: []
+  multiplier: 1
+  auc: {fileID: 2100000, guid: 6107873d2dbef421a9275344e7018b8f, type: 2}
 --- !u!1 &1347233270504943445
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,8 +17,4 @@ public class SetMuscleLogo : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-    }
 }

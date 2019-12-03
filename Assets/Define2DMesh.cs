@@ -23,7 +23,7 @@ public class Define2DMesh : MonoBehaviour {
         Points2MeshGameObject(vertices2D);
     }
 
-    private static GameObject Points2MeshGameObject(Vector2[] vertices2D)
+    internal static GameObject Points2MeshGameObject(Vector2[] vertices2D)
     {
         // Use the Triangulator to get indices for creating triangles
         Triangulator tr = new Triangulator(vertices2D);

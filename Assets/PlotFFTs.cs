@@ -8,6 +8,7 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 using System.Diagnostics;
+using Vector2 = UnityEngine.Vector2;
 
 public class PlotFFTs : MonoBehaviour
 {
@@ -126,7 +127,7 @@ public class PlotFFTs : MonoBehaviour
         SetMuscleB(mB);
     }
 
-    public string GetStringMuscle(Muscle m)
+    public static string GetStringMuscle(Muscle m)
     {
         switch (m)
         {
@@ -180,8 +181,8 @@ public class PlotFFTs : MonoBehaviour
         ExtractComplexResult(out double[] frequency_array, out double[] complex_array, _dftCards, target_segment,
             myTargetMuscle);
         var signalX = RangeIEnumerable(0.0078125, 1.0, (1.0 / complex_array.Length)).ToArray();
-        frequencyA.ac = ListDoubleToCurve(new List<double[]>() {_frequencies.ToArray(), complex_array});
-        signalA.ac = ListDoubleToCurve(new List<double[]>() {myTimeSignal, mySampleSignal[GetMuscleIndex(myTargetMuscle)].ToArray()});
+        frequencyA.xyCurve = ListDoubleToVector2(new List<double[]>() {_frequencies.ToArray(), complex_array});
+        signalA.xyCurve = ListDoubleToVector2(new List<double[]>() {myTimeSignal, mySampleSignal[GetMuscleIndex(myTargetMuscle)].ToArray()});
     }
     
     private void PlotFreqSubtraction(string mA,string mB, DrawQ1Plot freqPlot)
@@ -192,7 +193,7 @@ public class PlotFFTs : MonoBehaviour
             mB);
         
         var signalX = RangeIEnumerable(0.0078125, 1.0, (1.0 / complex_arrayA.Length)).ToArray();
-        freqPlot.ac = ListDoubleToCurve(new List<double[]>() {_frequencies.ToArray(), ElementwiseMult(complex_arrayA,complex_arrayB)});
+        freqPlot.xyCurve = ListDoubleToVector2(new List<double[]>() {_frequencies.ToArray(), ElementwiseMult(complex_arrayA,complex_arrayB)});
     }
     
     
@@ -203,7 +204,7 @@ public class PlotFFTs : MonoBehaviour
         ExtractComplexResult(out double[] frequency_arrayB, out double[] complex_arrayB, _dftCards, target_segment,
             mB);
         var signalX = RangeIEnumerable(0.0078125, 1.0, (1.0 / complex_arrayA.Length)).ToArray();
-        xyPlot.ac = ListDoubleToCurve(new List<double[]>() {complex_arrayA, complex_arrayB});
+        xyPlot.xyCurve = ListDoubleToVector2(new List<double[]>() {complex_arrayA, complex_arrayB});
     }
 
     /// <summary>
@@ -211,12 +212,12 @@ public class PlotFFTs : MonoBehaviour
 /// </summary>
 /// <param name="msCoh"></param>
 /// <returns></returns>
-    private static AnimationCurve ListDoubleToCurve(List<double[]> msCoh)
+    private static List<Vector2> ListDoubleToVector2(List<double[]> msCoh)
     {
-        var msCohAc = new AnimationCurve();
+        var msCohAc = new List<Vector2>();
         for (int i = 0; i < msCoh[0].Length; i++)
         {
-            msCohAc.AddKey(new Keyframe((float) msCoh[0][i], (float) msCoh[1][i]));
+            msCohAc.Add(new Vector2((float) msCoh[0][i], (float) msCoh[1][i]));
         }
 
         return msCohAc;
